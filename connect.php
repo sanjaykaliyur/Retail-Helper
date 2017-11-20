@@ -1,12 +1,15 @@
 <?php
-   	$dbservername = "localhost";
-    $dbusername = "root";
-    $dbpassword = "toor";
-    $dbname = "EduCamps";
-    $conn = mysqli_connect($dbservername, $dbusername, $dbpassword, $dbname);
-    // Database Names:
-      // USERS
-      // USER_CAMPS
-      // USER_ITEMS
-      // FORUM
+    $conn = oci_connect('', '' , '//dbserver.engr.scu.edu/db11g');
+    if (!$conn) {
+        print "<br>connection failed:";
+        exit;
+    }
+    // Tables
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 ?>
