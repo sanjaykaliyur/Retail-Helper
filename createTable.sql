@@ -11,7 +11,7 @@ Create table Manufacturer(location VARCHAR(15), productId, FOREIGN KEY (productI
 
 Create table ShippingContainer(containerId varchar(10) PRIMARY KEY, location varchar(10), productId, FOREIGN KEY (productId) REFERENCES Product(productId));
 
-Create table Supplier(supplierId varchar(15) PRIMARY KEY, location varchar(15), materialProd varhcar(15), productId, FOREIGN KEY (productId) REFERENCES Product(productId));
+Create table Supplier(supplierId varchar(15) PRIMARY KEY, location varchar(15), materialProd varchar(15), productId, FOREIGN KEY (productId) REFERENCES Product(productId));
 
-Create table Reviews(userId, productId, review varhcar(50), FOREIGN KEY (userId) REFERENCES Users(userId), FOREIGN KEY (productId) references Product(productId));
+Create table Reviews(userId, productId, review varchar(50), FOREIGN KEY (userId) REFERENCES Users(userId), FOREIGN KEY (productId) references Product(productId));
 
