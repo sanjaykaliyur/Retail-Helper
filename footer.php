@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>EduCamps</title>
+    <title>RetailHelper</title>
 
     <!-- Bootstrap Core CSS >
     <link href="css/bootstrap.min.css" rel="stylesheet">

@@ -26,7 +26,7 @@ include 'header.php';
   <body>
     <div>
 
-      <h3 class="centerMe">2017 Registration (Current)</h3>
+      <h3 class="centerMe">Shirt Purchase Analytics</h3>
       <canvas id="canvas" width="900" height="800" style="padding-top: 100px; margin: auto;"></canvas>
       <script>
         $.ajax({

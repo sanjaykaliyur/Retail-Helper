@@ -22,21 +22,46 @@
 
      <div class="row">
          <div class="col-lg-12">
-             <h1 >Catalog
+             <h1 >Store
                  <small>Purchase T-Shirts</small>
              </h1>
-             <p>*Note: If you have registered or are registering your child for camp, you will receive a 15% discount on all merchandise purchased in this catalaog (Discount applied during checkout)</p>
+             <p>*Note: Each shirt is made of a different material sourced from different parts of the world. Our prices reflect the supply and availability of the material we use.</p>
          </div>
 
     <div class="row">
         <div class="col-md-7">
           <a href="#">
-            <img class="img-fluid rounded mb-3 mb-md-0" src="Images/shirt_black.png" height="200" width="160">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="Images/shirt_black.png" height="600" width="500">
           </a>
         </div>
         <div class="col-md-5">
           <h3>Black Shirt</h3>
           <p>Our black shirt is made with premium cotton.</p>
+          <p>Price: $15.00</p>
+          <div class="dropdown">
+            <button href="#" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" 
+            class="button dropdown">Select Size</button><br>
+              <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true">
+                <li><a href="#">Small</a></li>
+                <li><a href="#">Medium</a></li>
+                <li><a href="#">Large</a></li>
+                <li><a href="#">X-Large</a></li>
+              </ul>
+          </div>
+          <a class="btn btn-primary" href="#">Purchase</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-7">
+          <a href="#">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="Images/shirt_blue.png" height="600" width="500">
+          </a>
+        </div>
+        <div class="col-md-5">
+          <h3>Blue Shirt</h3>
+          <p>Our blue shirt is made with premium leather.</p>
+          <p>Price: $18.50</p>
           <button href="#" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" 
           class="button dropdown">Select Size</button><br>
             <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true">
@@ -52,25 +77,21 @@
     <div class="row">
         <div class="col-md-7">
           <a href="#">
-            <img class="img-fluid rounded mb-3 mb-md-0" src="Images/shirt_blue.png" alt="">
-          </a>
-        </div>
-        <div class="col-md-5">
-          <h3>Blue Shirt</h3>
-          <p>Our blue shirt is made with premium leather.</p>
-          <a class="btn btn-primary" href="#">Purchase</a>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-7">
-          <a href="#">
-            <img class="img-fluid rounded mb-3 mb-md-0" src="Images/shirt_green.png" alt="">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="Images/shirt_green.png" height="600" width="500">
           </a>
         </div>
         <div class="col-md-5">
           <h3>Green Shirt</h3>
-          <p>Our green shirt is made with premium recycled materials.</p>
+          <p>Our green shirt is made with premium modal.</p>
+          <p>Price: $16.50</p>
+          <button href="#" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" 
+          class="button dropdown">Select Size</button><br>
+            <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true">
+              <li><a href="#">Small</a></li>
+              <li><a href="#">Medium</a></li>
+              <li><a href="#">Large</a></li>
+              <li><a href="#">X-Large</a></li>
+            </ul>
           <a class="btn btn-primary" href="#">Purchase</a>
         </div>
     </div>
@@ -78,12 +99,21 @@
     <div class="row">
         <div class="col-md-7">
           <a href="#">
-            <img class="img-fluid rounded mb-3 mb-md-0" src="Images/shirt_pink.png" alt="">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="Images/shirt_pink.png" height="600" width="500">
           </a>
         </div>
         <div class="col-md-5">
           <h3>Pink Shirt</h3>
-          <p>Our pink shirt is made with premium gum.</p>
+          <p>Our pink shirt is made with premium wool.</p>
+          <p>Price: $29.50</p>
+          <button href="#" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" 
+          class="button dropdown">Select Size</button><br>
+            <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true">
+              <li><a href="#">Small</a></li>
+              <li><a href="#">Medium</a></li>
+              <li><a href="#">Large</a></li>
+              <li><a href="#">X-Large</a></li>
+            </ul>
           <a class="btn btn-primary" href="#">Purchase</a>
         </div>
     </div>
@@ -91,12 +121,21 @@
     <div class="row">
         <div class="col-md-7">
           <a href="#">
-            <img class="img-fluid rounded mb-3 mb-md-0" src="Images/shirt_red.png" alt="">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="Images/shirt_red.png" height="600" width="500">
           </a>
         </div>
         <div class="col-md-5">
           <h3>Red Shirt</h3>
-          <p>Our red shirt is made with premium wool.</p>
+          <p>Our red shirt is made with premium polyester.</p>
+          <p>Price: $14.00</p>
+          <button href="#" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" 
+          class="button dropdown">Select Size</button><br>
+            <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true">
+              <li><a href="#">Small</a></li>
+              <li><a href="#">Medium</a></li>
+              <li><a href="#">Large</a></li>
+              <li><a href="#">X-Large</a></li>
+            </ul>
           <a class="btn btn-primary" href="#">Purchase</a>
         </div>
     </div>
@@ -104,12 +143,21 @@
     <div class="row">
         <div class="col-md-7">
           <a href="#">
-            <img class="img-fluid rounded mb-3 mb-md-0" src="Images/shirt_yellow.png" alt="">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="Images/shirt_yellow.png" height="600" width="500">
           </a>
         </div>
         <div class="col-md-5">
           <h3>Yellow</h3>
-          <p>Our yellow shirt is made with premium wheat.</p>
+          <p>Our yellow shirt is made with premium rayon.</p>
+          <p>Price: $17.50</p>
+          <button href="#" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" 
+          class="button dropdown">Select Size</button><br>
+            <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true">
+              <li><a href="#">Small</a></li>
+              <li><a href="#">Medium</a></li>
+              <li><a href="#">Large</a></li>
+              <li><a href="#">X-Large</a></li>
+            </ul>
           <a class="btn btn-primary" href="#">Purchase</a>
         </div>
     </div>

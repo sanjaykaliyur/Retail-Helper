@@ -20,8 +20,8 @@
                         <h4> <strong>John L. on 2016-11-30</strong></h4>
                     </div>
                     <div class="panel-body">
-											<h4>Chemistry</h4>
-                        <p>Wow! EduCamps is an absolute MUST for your child! My son, Joseph, came home every day from camp with new stories and an excitement I had never seen in him before. EduCamps is not only a place for learning, it is also a place for kids to grow together and develop a better sense of understanding of the world. Joseph and I both give EduCamps two thumbs up!</p>
+											<h4>Black Shirt</h4>
+                        <p>Wow! This black shirt is amazing. It's the best black shirt I've ever owned. I recommend everyone purchase this shirt.</p>
                     </div>
                 </div>
             </div>
@@ -31,8 +31,8 @@
                         <h4><strong>Lucy J. on 2016-10-24</strong></h4>
                     </div>
                     <div class="panel-body">
-											<h4>Water Hockey</h4>
-                        <p>What a great experience. My daughter, Jenny, told me all about her time at EduCamps and it is obvious she loved it. She especially loved the staff of EduCamps, as she said they were always enthusiastic and taught her some great camp songs! It is obvious she learned a lot, and she is very proud of the projects she brought home from camp. Thanks EduCamps!</p>
+											<h4>Pink Shirt</h4>
+                        <p>Wow! This pink shirt is amazing. The material is great. Thanks!</p>
                     </div>
                 </div>
             </div>
@@ -42,8 +42,8 @@
                         <h4><strong>Andy R. on 2016-08-15</strong></h4>
                     </div>
                     <div class="panel-body">
-											<h4>Ping Pong</h4>
-                        <p>My son speaks very highly of EduCamps. He told me that he was very impressed with the staff, and I can proudly say that EduCamps has given my son a new passion. He greatly enjoyed the Web Programming class, and has been creating new web pages ever since he finished camp. He has told me that he plans on pursuing computer science once he reaches college, and I have EduCamps to thank for that.</p>
+											<h4>Blue Shirt</h4>
+                        <p>No other blue shirt can compete with this shirt. This is the best shirt ever.</p>
                     </div>
                 </div>
             </div>
@@ -53,8 +53,8 @@
                         <h4><strong>Patty M. on 2016-09-10</strong></h4>
                     </div>
                     <div class="panel-body">
-											<h4>Chemistry</h4>
-                        <p>Wow, wow, wow!! Never have I seen my daughter more excited about anything than the Chemistry class she took with EduCamps. She is already begging me to let her come back and take other classes offered at EduCamps. I have never known my daughter to be extremely excited about learning, but EduCamps has changed that! </p>
+											<h4>Green Shirt</h4>
+                        <p>Wow, wow, wow!! My green shirt is great. It is so good that I bought one for all of my neighbors.</p>
                     </div>
                 </div>
             </div>
