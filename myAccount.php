@@ -1,36 +1,40 @@
 <?php
-include 'header.php';
+  include 'header.php';
+  include 'connect.php';
 ?>
 <br>
 <br>
 <br>
 <br>
 <?php
-echo '<div id="accountWrapper" style="padding-left: 10px;">';
-  $sql = "SELECT * FROM USER_CAMPS WHERE Username = '$id';";
-  $sql1 = "SELECT * FROM USERS WHERE Username = '$id';";
-  $sql2 = "SELECT * FROM USER_ITEMS WHERE Username = '$id';";
-  $result = mysqli_query($conn,$sql);
-  $result1 = mysqli_query($conn,$sql1);
-  $row1 = mysqli_fetch_assoc($result1);
-  $result2 = mysqli_query($conn,$sql2);
-
-  echo '<h3>My courses:</h3>';
-  while($row = mysqli_fetch_assoc($result)) {
-    echo '<hr><p><h2>'.$row['Camp'].'</h2></p>';
-    echo '<p><b>Child:</b> '.$row['childName'].'</p>';
-    echo '<p><b>Duration:</b> '.$row['duration'].'</p>';
-    echo '<p><b>Date Period:</b> '.$row['date'].'</p>';
-    echo '<p><b>Location: </b> '.$row['location'].'</p><hr>';
+  
+  echo '<div id="accountWrapper" style="padding-left: 10px;">';
+  $sql = "SELECT * FROM userPurchases WHERE UserId = '$id'";
+  $sql1 = "SELECT * FROM USERS WHERE UserId = '$id'";
+  $result = oci_parse($conn, "SELECT * FROM userPurchases WHERE UserId = '$id'");
+  $result2 = oci_parse($conn, "SELECT * FROM users WHERE UserId = '$id'");
+  oci_execute($result2);
+  echo '<h3>My Info:</h3>';
+  if(($row = oci_fetch_array($result2, OCI_BOTH)) != false)
+  {
+    echo '<hr><p><h2>'.$row['USERID'].'</h2></p>';
+    echo '<p><b>First Name:</b> '.$row['FIRSTNAME'].'</p>';
+    echo '<p><b>Last Name:</b> '.$row['LASTNAME'].'</p>';
+    echo '<p><b>Street:</b> '.$row['STREET'].'</p>';
+    echo '<p><b>Location: </b> '.$row['CITY'].'</p>';
+    echo '<p><b>State: </b> '.$row['STATE'].'</p>';
+    echo '<p><b>ZipCode: </b> '.$row['ZIPCODE'].'</p><hr>';
   }
-  echo '<br>
-        <h3> My items:</h3>';
-  while($row2 = mysqli_fetch_assoc($result2)) {
-    echo '<hr><p>'.$row2['item'].'</p><hr>';
+  $result3 = oci_parse($conn, "SELECT * FROM userpurchases WHERE UserId = '$id'");
+  oci_execute($result3);
+  echo '<hr><p><h2>User Purchases</h2></p>';
+  if(($row = oci_fetch_array($result3, OCI_BOTH)) != false)
+  {
+    echo '<p><b>Color of T-Shirt:</b> '.$row['FIRSTNAME'].'</p>';
+    echo '<p><b>Quantity:</b> '.$row['LASTNAME'].'</p>';
+    echo '<p><b>Date Ordered:</b> '.$row['STREET'].'</p>';
   }
-  echo '</div>';
 ?>
-
 <?php
 include 'footer.php';
 ?>

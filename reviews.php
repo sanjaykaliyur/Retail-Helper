@@ -54,29 +54,45 @@
                     </div>
                     <div class="panel-body">
 											<h4>Green Shirt</h4>
-                        <p>Wow, wow, wow!! My green shirt is great. It is so good that I bought one for all of my neighbors.</p>
-                    </div>
+                        <p>Wow, wow, wow!! My green shirt is great. It is so good that I bought one for all of my neighbors.</po
+			</div>
                 </div>
             </div>
-						<?php
-							$sql = "SELECT * FROM FORUM;";
-							$result = mysqli_query($conn,$sql);
-				 			while($row = mysqli_fetch_assoc($result)) {
-  							if($row != 0) {
-    							echo '<div class="col-md-4">
-    	                <div class="panel panel-default">
-    	                    <div class="panel-heading">
-    	                        <h4><strong>'.$row['Username'].'</strong> on '.$row['entryDate'].'</h4>
+              <?php
+	        $result = oci_parse($conn, "SELECT * FROM REVIEWS");
+		oci_execute($result);
+	        while(($row = oci_fetch_array($result, OCI_BOTH)) != false){
+		    	if ($row['PRODUCTID'] == 'a'){
+        		  $product = 'Black Shirt';
+    			}
+    			if ($row['PRODUCTID'] == 'b'){
+        		  $product = 'Blue Shirt';
+    			}
+    			if ($row['PRODUCTID'] == 'c'){
+        		  $product = 'Green Shirt';
+    			}
+    			if ($row['PRODUCTID'] == 'd'){
+        		  $product = 'Pink Shirt';
+    			}
+    			if ($row['PRODUCTID'] == 'e'){
+        		  $product = 'Red Shirt';
+    			}
+    			if ($row['PRODUCTID'] == 'f'){
+        		  $product = 'Yellow Shirt';
+    			}  
+    		    echo '<div class="col-md-4">
+    	                    <div class="panel panel-default">
+    	                      <div class="panel-heading">
+    	                        <h4><strong>'.$row['USERID'].'</strong></h4>
+    	                      </div>
+    	                      <div class="panel-body">
+				<h4>'.$product.'</h4>
+    	                        <p>'.$row['REVIEW'].'</p>
+    	                      </div>
     	                    </div>
-    	                    <div class="panel-body">
-    												<h4> '.$row['campName'].'</h4>
-    	                        <p>'.$row['response'].'</p>
-    	                    </div>
-    	                </div>
-    	            </div>';
-    						}
-              }
-						 ?>
+    	                  </div>';
+                }
+	      ?>
         </div>
 
 <div>
@@ -85,20 +101,17 @@
 </div>
 <?php
 if(isset($_SESSION['id'])) {
+	echo '<hr><br><br>';
 	echo '<h3> Leave a Review </h3>
-  <form method="post" id="forum" style="margin:15px" action = "forum_add.php">
-            Camp Name: <br>
-						<select name = "campName"required data-validation-required-message="select a camp name">
-							<option selected="selected" value="">Camp Name</option>
-							<option value="Introduction to Web Programming">Introduction to Web Programming</option>
-							<option value="Introduction to Python">Introduction to Python</option>
-							<option value="Introduction to Java">Introduction to Java</option>
-							<option value="Introduction to Robotics">Introduction to Robotics</option>
-							<option value="Electrical Engineering: Circuits">Electrical Engineering: Circuits</option>
-							<option value="Electrical Engineering: Logic Design">Electrical Engineering: Logic Design</option>
-							<option value="Basketball">Basketball</option>
-							<option value="Football">Football</option>
-							<option value="Swimming">Swimming</option>
+  <form method="post" id="forum" style="margin:15px" action = "reviews_add.php">
+            T-Shirt Color: <br>
+						<select name = "tshirts" required data-validation-required-message="select a color">
+							<option selected="selected" value="Black">Black</option>
+							<option value="Blue">Blue</option>
+							<option value="Green">Green</option>
+							<option value="Pink">Pink</option>
+							<option value="Red">Red</option>
+							<option value="Yellow">Yellow</option>
 						</select>
 						<br><br>
             Comment: <br>

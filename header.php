@@ -54,18 +54,19 @@ session_start();
             <div id="userCntrl">
               <?php
                 if(isset($_SESSION['id'])){
-                  $sql = "select * FROM users WHERE `Username` ='$id'";
-                  $result = mysqli_query($conn,$sql);
-                  $row = mysqli_fetch_assoc($result);
+                  $result = oci_parse($conn,"select * FROM users WHERE 'userId' ='$id'");
+                oci_execute($result);
+		if(($row = oci_fetch_array($result, OCI_BOTH)) != false);
+		{
                   echo '<div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Welcome '.$row['Username'].'</button>
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Welcome '.$row['USERID'].'</button>
                         <ul class="dropdown-menu">
                           <li><a href="myAccount.php">My Account</a></li>
                           <li><a href="added_to_cart.php">Cart</a></li>
                           <li><a href="logout.php">Logout</a></li>
                         </ul>
                       </div>';
-                }
+                }}
                 else
                 {
                   echo '<button><a href="login.php">Sign-In</a></button>';
