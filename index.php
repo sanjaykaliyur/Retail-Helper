@@ -27,8 +27,93 @@
              </h1>
              <p>*Note: If you have registered or are registering your child for camp, you will receive a 15% discount on all merchandise purchased in this catalaog (Discount applied during checkout)</p>
          </div>
-     </div>
-     <!-- /.row -->
+
+    <div class="row">
+        <div class="col-md-7">
+          <a href="#">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="Images/shirt_black.png" height="200" width="160">
+          </a>
+        </div>
+        <div class="col-md-5">
+          <h3>Black Shirt</h3>
+          <p>Our black shirt is made with premium cotton.</p>
+          <button href="#" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" 
+          class="button dropdown">Select Size</button><br>
+            <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true">
+              <li><a href="#">Small</a></li>
+              <li><a href="#">Medium</a></li>
+              <li><a href="#">Large</a></li>
+              <li><a href="#">X-Large</a></li>
+            </ul>
+          <a class="btn btn-primary" href="#">Purchase</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-7">
+          <a href="#">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="Images/shirt_blue.png" alt="">
+          </a>
+        </div>
+        <div class="col-md-5">
+          <h3>Blue Shirt</h3>
+          <p>Our blue shirt is made with premium leather.</p>
+          <a class="btn btn-primary" href="#">Purchase</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-7">
+          <a href="#">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="Images/shirt_green.png" alt="">
+          </a>
+        </div>
+        <div class="col-md-5">
+          <h3>Green Shirt</h3>
+          <p>Our green shirt is made with premium recycled materials.</p>
+          <a class="btn btn-primary" href="#">Purchase</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-7">
+          <a href="#">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="Images/shirt_pink.png" alt="">
+          </a>
+        </div>
+        <div class="col-md-5">
+          <h3>Pink Shirt</h3>
+          <p>Our pink shirt is made with premium gum.</p>
+          <a class="btn btn-primary" href="#">Purchase</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-7">
+          <a href="#">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="Images/shirt_red.png" alt="">
+          </a>
+        </div>
+        <div class="col-md-5">
+          <h3>Red Shirt</h3>
+          <p>Our red shirt is made with premium wool.</p>
+          <a class="btn btn-primary" href="#">Purchase</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-7">
+          <a href="#">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="Images/shirt_yellow.png" alt="">
+          </a>
+        </div>
+        <div class="col-md-5">
+          <h3>Yellow</h3>
+          <p>Our yellow shirt is made with premium wheat.</p>
+          <a class="btn btn-primary" href="#">Purchase</a>
+        </div>
+    </div>
+
      <?php
      $sql = "SELECT * FROM CATALOG;";
      $result = mysqli_query($conn,$sql);

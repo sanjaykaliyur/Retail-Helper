@@ -75,7 +75,7 @@ session_start();
             <div class="navbar-header">
 
                 <a class="navbar-brand" href="index.php">
-                  <img class="logo" id = "logo" src="Images/Coen161project-logo-empty.png"></img>
+                  <img class="logo" id = "logo" src="Images/logo.png"></img>
                 </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
