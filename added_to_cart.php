@@ -6,20 +6,20 @@
      header('Location: login.php');
  }
 
-if(isset($_POST['courseName']) && isset($_POST['cost']) && isset($_POST['spots']) && isset($_POST['courseID']) && isset($_POST['duration']) && isset($_POST['date'])) {
-  $duration = $_POST['duration'];
-  $date =  $_POST['date'];
-  $course = $_POST['courseName'];
-  $courseID = $_POST['courseID'];
-  $cost = $_POST['cost'];
-  $spots = $_POST['spots'];
-  $child = $_POST['child'];
-  $location = $_POST['location'];
+if(isset($_POST['color']) && isset($_POST['cost']) && isset($_POST['productID']) && isset($_POST['quantityAvailable'])){
+  $color = $_POST['color'];
+  $price =  $_POST['price'];
+  $productID = $_POST['productID'];
+  $quantity = $_POST['quantityAvailable'];
+  echo $color;
+  echo $price;
+  echo $productID;
+  echo $quantity;
 
   if($duration == "2 weeks"){
     $cost = $cost * 2;
   }
-  $sql0 = "INSERT INTO `courseTemp`(`user`, `courseID`, `courseName`, `courseDuration`, `courseCost`, `courseDate`, `childName`,`location`) VALUES ('$id','$courseID','$course','$duration', '$cost','$date','$child','$location')";
+  $sql0 = "INSERT INTO courseTemp('$id','$courseID','$course','$duration', '$cost','$date','$child','$location')";
   if(!($result0 = mysqli_query($conn,$sql0))) {
     echo '<script>location.href="register_fail.php"</script>';
   }
@@ -35,20 +35,6 @@ if(isset($_POST['courseName']) && isset($_POST['cost']) && isset($_POST['spots']
   $result = mysqli_query($conn,$sql);
   }
 
-}else if(isset($_POST['item_name']) && isset($_POST['item_cost']) && isset($_POST['item_ID'])) {
-  $item_name = $_POST['item_name'];
-  $item_ID = $_POST['item_ID'];
-  $item_cost = $_POST['item_cost'];
-
-
-  $sql = "SELECT items_cart FROM users WHERE Username = '$id';";
-  $result = mysqli_query($conn,$sql);
-  $row = mysqli_fetch_assoc($result);
-
-  $cart_items = $row['items_cart'].$item_ID;
-
-  $sql = "UPDATE users SET items_cart = '$cart_items' WHERE Username = '$id';";
-  $result = mysqli_query($conn,$sql);
 }
 ?>
  <!DOCTYPE html>

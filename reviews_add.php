@@ -2,6 +2,8 @@
 <?php 
   include 'header.php'; 
   include 'connect.php';
+  echo '<br><br><br><br><br><br><br><br><br><br>';
+
   $Start_Date = date("Y-m-d");
   if(isset($_POST['tshirts']) && isset($_POST['comment'])) {
     $color = $_POST['tshirts'];
@@ -29,7 +31,7 @@
   }
    echo '<br><br><br><br><br><br><br><br><br><br>';
    echo "INSERT INTO REVIEWS VALUES ('$id','$productId','$comment')";
-
-  //header('Location: ' . $_SERVER['HTTP_REFERER']);
+   
+  header('Location: ' . $_SERVER['HTTP_REFERER']);
 
 ?>

@@ -11,16 +11,10 @@
     $City = $_POST['city'];
     $State = $_POST['state'];
     $ZipCode = $_POST['zipCode'];
-     $sql = "INSERT INTO Users VALUES ('$Username','$Password','$FirstName','$LastName','$Street','$City','$State','$ZipCode')";
-     echo $sql;
-     $query = oci_parse($conn, $sql);
+    echo "INSERT INTO Users VALUES ('$Username','$Password','$FirstName','$LastName','$Street','$City','$State','$ZipCode')";
+     $query = oci_parse($conn,"INSERT INTO Users VALUES ('$Username','$Password','$FirstName','$LastName','$Street','$City','$State','$ZipCode')");
      oci_execute($query);
-     if($result){
-         echo "<script> location.href='login.php';</script>";
-     }else{
-        echo '<script> alert("fail to register")</script>';
-        echo "<script> location.href='login.php';</script>";
-      }
+     echo "<script> location.href='login.php';</script>";
   }
   if(isset($_POST['user']) && isset($_POST['pass'])) {
     $username = $_POST['user'];
