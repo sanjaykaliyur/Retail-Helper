@@ -1,5 +1,4 @@
 <?php
-include 'header.php';
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
 <script
@@ -20,13 +19,12 @@ include 'header.php';
   <br>
   <br>
   <br>
-  <center><h2>Enrollment Statistics</h2></center>
+  <center><h2>Purchase Statistics</h2></center>
 </head>
 <html>
   <body>
     <div>
 
-      <h3 class="centerMe">Shirt Purchase Analytics</h3>
       <canvas id="canvas" width="900" height="800" style="padding-top: 100px; margin: auto;"></canvas>
       <script>
         $.ajax({
@@ -54,21 +52,9 @@ include 'header.php';
       </script>
     </div>
 
-
-
-    <div class="col-md-6">
-        <img class="img-responsive" src="Images/Statistics/2016StatsCamp.png">
-        <img class="img-responsive" src="Images/Statistics/2016StatsLocation.png" style="height=150%;width=200%;">
-    </div>
-
-    <div class="col-md-6">
-        <img class="img-responsive" src="Images/Statistics/2015StatsCamp.png" style="height=150%;width=200%;">
-        <img class="img-responsive" src="Images/Statistics/2015StatsLocation.png" style="height=90%;width=200%;">
-    </div>
-
   </body>
 </html>
 
 </script>
 
-<? include 'footer.php'; ?>
+<? ?>
