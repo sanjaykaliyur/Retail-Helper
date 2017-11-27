@@ -5,37 +5,6 @@
      echo "<script type='text/javascript'>alert('$message');</script>";
      header('Location: login.php');
  }
-
-if(isset($_POST['color']) && isset($_POST['cost']) && isset($_POST['productID']) && isset($_POST['quantityAvailable'])){
-  $color = $_POST['color'];
-  $price =  $_POST['price'];
-  $productID = $_POST['productID'];
-  $quantity = $_POST['quantityAvailable'];
-  echo $color;
-  echo $price;
-  echo $productID;
-  echo $quantity;
-
-  if($duration == "2 weeks"){
-    $cost = $cost * 2;
-  }
-  $sql0 = "INSERT INTO courseTemp('$id','$courseID','$course','$duration', '$cost','$date','$child','$location')";
-  if(!($result0 = mysqli_query($conn,$sql0))) {
-    echo '<script>location.href="register_fail.php"</script>';
-  }
-  else
-  {
-  $sql = "SELECT courses_cart FROM users WHERE Username = '$id';";
-  $result = mysqli_query($conn,$sql);
-  $row = mysqli_fetch_assoc($result);
-
-  $cart_courses = $row['courses_cart'].$courseID;
-
-  $sql = "UPDATE users SET courses_cart = '$cart_courses' WHERE Username = '$id';";
-  $result = mysqli_query($conn,$sql);
-  }
-
-}
 ?>
  <!DOCTYPE html>
  <html lang="en">
@@ -58,7 +27,161 @@ if(isset($_POST['color']) && isset($_POST['cost']) && isset($_POST['productID'])
    <br>
    <br>
    <?php
+       $totalcost = 0;
+       if(isset($_POST['color']) && isset($_POST['cost']) && isset($_POST['productID'])){
+           $color = $_POST['color'];
+           $price =  $_POST['cost'];
+           $productID = $_POST['productID'];
+           $result = oci_parse($conn,"INSERT INTO cartTemp VALUES ('".$productID."','".$price."','".$color."','".$id."')");
+           oci_execute($result);
+	   //echo
+           
+	   $result2 = oci_parse($conn, "SELECT * FROM cartTemp where userid = '".$id."'");
+	   oci_execute($result2);
+	   //echo 
+             
+            echo '<div class="container" style="width: 150%;">
+                          <div class="row">
+                               <div class="col-xs-8">
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">
+                                             <div class="panel-title">
+                                                  <div class="row">
+                                                        <div class="col-xs-6">
+                                                             <h5><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
+                                                        </div>
+                                                        <div class="col-xs-6">
+                                                            <button type = "submit" id = "continueShop" class="btn btn-primary"><span class="glyphicon glyphicon-share-alt"></span>Catalog</button>
+                                                            <script type="text/javascript">
+                                                                document.getElementById("continueShop").onclick = function () {
+                                                                    location.href = "index.php";
+                                                                };
+                                                            </script>
+                                                        </div>
+                                                    </div>
+                                               </div>
+                                          </div>
+                                         <div class="panel-body">
+                     ';
+           while($row = oci_fetch_array($result2, OCI_BOTH))
+           {
+              $resultInner = oci_parse($conn, "SELECT filepath FROM products where productid = '".$row['PRODUCTID']."'");
+                     oci_execute($resultInner);
+                     $rowInner =  oci_fetch_array($resultInner, OCI_BOTH);
+                     echo '<div class="row">
+                               <div class="col-xs-2"><img class="img-responsive" style = "width: 100px; height: auto;" src="'.$rowInner['FILEPATH'].'">
+                               </div>
+                               <div class="col-xs-4">
+                                   <h4 class="product-name"><strong></strong></h4><h4><small>'.$row['COLOR'].' Shirt</small></h4>
+                               </div>
+                               <div class="col-xs-6">
+                                   <div class="col-xs-6 text-right">';
+                        echo'          <h6><strong>$'.$row['PRICE'].'<span class="text-muted"></span></strong></h6>';
+                        echo'
+                                   </div>
+                           <div class="col-xs-2">
+                               <form method="POST" action="remove_cart_item.php">
+                                   <input type="hidden" name= "productid"  value = "'.$row['PRODUCTID'].'"></input>
+                                   <button type="submit" class="btn btn-link btn-xs">
+                                       <span class="glyphicon glyphicon-trash"> </span>
+                                   </button>
+                               </form>
+                           </div>
+                        </div>
+                    </div>
+                    <hr>
+                    ';
+                    $totalcost = $totalcost + $row['PRICE'];
+           }
+	   echo '
+                                                                <h4 class="text-right">Total: $'.$totalcost.'<strong></strong></h4>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                <form action="pay.php" method="post">
+                      <input type="hidden" name="totalcost" value="'.$totalcost.'"></input>
+                                                                <button type="submit" class="btn btn-success btn-block">
+                                                                        Checkout
+                                                                </button>
+                    </form>';
+       }
+       else
+       {
+           // they are here to see what is in their cart so display all in their cart or if nothing is in there then EMPTY CART!
+	   echo '<div class="container" style="width: 150%;">
+                          <div class="row">
+                               <div class="col-xs-8">
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">
+                                             <div class="panel-title">
+                                                  <div class="row">
+                                                        <div class="col-xs-6">
+                                                             <h5><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
+                                                        </div>
+                                                        <div class="col-xs-6">
+                                                            <button type = "submit" id = "continueShop" class="btn btn-primary"><span class="glyphicon glyphicon-share-alt"></span>Catalog</button>
+                                                            <script type="text/javascript">
+                                                                document.getElementById("continueShop").onclick = function () {
+                                                                    location.href = "index.php";
+                                                                };
+                                                            </script>
+                                                        </div>
+                                                    </div>
+                                               </div>
+                                          </div>
+                                         <div class="panel-body">
+           ';
+           $result = oci_parse($conn, "SELECT * FROM cartTemp where userid = '".$id."'");
+           oci_execute($result);
+	   if(oci_fetch_array($result, OCI_BOTH)){
+               while($row = oci_fetch_array($result, OCI_BOTH))
+               {
 
+		     $resultInner = oci_parse($conn, "SELECT filepath FROM products where productid = '".$row['PRODUCTID']."'");
+		     oci_execute($resultInner);
+		     $rowInner =  oci_fetch_array($resultInner, OCI_BOTH);
+	             echo '<div class="row">
+                               <div class="col-xs-2"><img class="img-responsive" style = "width: 100px; height: auto;" src="'.$rowInner['FILEPATH'].'">
+                               </div>
+                               <div class="col-xs-4">
+                                   <h4 class="product-name"><strong></strong></h4><h4><small>'.$row['COLOR'].' Shirt</small></h4>
+                               </div>
+                               <div class="col-xs-6">
+                                   <div class="col-xs-6 text-right">';
+                        echo'          <h6><strong>$'.$row['PRICE'].'<span class="text-muted"></span></strong></h6>';
+                        echo'
+                                   </div>
+                           <div class="col-xs-2">
+                               <form method="POST" action="remove_cart_item.php">
+                                   <input type="hidden" name= "productid"  value = "'.$row['PRODUCTID'].'"></input>
+                                   <button type="submit" class="btn btn-link btn-xs">
+                                       <span class="glyphicon glyphicon-trash"> </span>
+                                   </button>
+                               </form>
+                           </div>
+                        </div>
+                    </div>
+                    <hr>
+                    ';
+		    $totalcost = $totalcost + $row['PRICE'];
+               }
+           }
+           else
+           {
+               echo '<h1 id="emptyShop"><span class="glyphicon glyphicon-shopping-cart"></span> Empty Shopping Cart!</h1>';
+           }
+	   echo '
+                                                                <h4 class="text-right">Total: $'.$totalcost.'<strong></strong></h4>
+                                                        </div>
+                                                        <div class="col-xs-3">
+		<form action="pay.php" method="post">
+                      <input type="hidden" name="totalcost" value="'.$totalcost.'"></input>
+                                                                <button type="submit" class="btn btn-success btn-block">
+                                                                        Checkout
+                                                                </button>
+                    </form>';
+
+       }
+/*
    $sql = "SELECT courses_cart, items_cart FROM users WHERE Username = '$id';";
    $result = mysqli_query($conn,$sql);
    $row = mysqli_fetch_assoc($result);
@@ -66,65 +189,12 @@ if(isset($_POST['color']) && isset($_POST['cost']) && isset($_POST['productID'])
    $array2 = str_split($row['items_cart']);
    $totalCost = $i = 0;
    $bool = $bool2 = false;
-   // if first element in array and array2 == "" then display
-   echo '<div id="discounts">
-          <ul><b>Discounts:</b>
-           <li>If you have more than 1 child registered you get a 10% discount!</li>
-           <li>If you already registered or add a camp to cart and wish to buy a catalog item you get a 15% discount!</li>
-         </ul>
-        </div><br>';
-//	echo "Course Cart: ".$row['courses_cart'];
-//	echo "Item Cart: ".$row['items_cart'];
 	if(($array[0] == "" && $array2[0] == "")){
     		echo '<h1 id="emptyShop"><span class="glyphicon glyphicon-shopping-cart"></span> Empty Shopping Cart!</h1>';
    	}
 	else if($row['courses_cart'] == "" && $row['items_cart'] == "") {
 		 echo '<h1 id="emptyShop"><span class="glyphicon glyphicon-shopping-cart"></span> Empty Shopping Cart!</h1>';
 	}
-   	else {
-   		echo '<div class="container" style="width: 150%;">
-        	<div class="row">
-        		<div class="col-xs-8">
-        			<div class="panel panel-info">
-        				<div class="panel-heading">
-        					<div class="panel-title">
-        						<div class="row">
-        							<div class="col-xs-6">
-        								<h5><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
-        							</div>
-        							<div class="col-xs-6">
-                        <button type = "submit" id = "continueShop" class="btn btn-primary"><span class="glyphicon glyphicon-share-alt"></span>Courses</button>
-                        <script type="text/javascript">
-                          document.getElementById("continueShop").onclick = function () {
-                            location.href = "register2.php";
-                          };
-          								 </script>
-                        <button type = "submit" id = "continueShop2" class="btn btn-primary"><span class="glyphicon glyphicon-share-alt"></span>Catalog</button>
-                        <script type="text/javascript">
-                          document.getElementById("continueShop2").onclick = function () {
-                            location.href = "catalog2.php";
-                          };
-          								 </script>
-        							</div>
-        						</div>
-        					</div>
-        				</div>
-        				<div class="panel-body">';
-                //courses
-
-                /*get Child names
-                foreach($array as $i => $item) {
-                  $sqlx = "SELECT childName FROM courseTemp WHERE user = '$id';";
-                  $resultx = mysqli_query($conn,$sqlx);
-                  $childs = array();
-                  while ($rowx = mysqli_fetch_assoc($resultx)) {
-                    array_push($childs, $rowx['childName']);
-                  }
-                }*/
-               // print_r($childs);
-               // print_r($array);
-               // $rev = array_reverse($childs);
-               // print_r($rev);
 		if(!($array[0] == "")) {
                   $bool = true;
                   foreach($array as $i => $item) {
@@ -133,7 +203,6 @@ if(isset($_POST['color']) && isset($_POST['cost']) && isset($_POST['productID'])
 		    $rev = mysqli_fetch_assoc($resultx);
                     $c = $rev['childName'];
 		    $sql2 = "SELECT courseName, courseDuration, courseCost, childName FROM courseTemp WHERE courseID = '$array[$i]' AND user = '$id' AND childName = '$c';";
-                   // echo $sql2."           ";
                     $sqlA = "SELECT image FROM COURSES WHERE course_ID = '$array[$i]';";
                     $resultA = mysqli_query($conn,$sqlA);
                     $rowA = mysqli_fetch_assoc($resultA);
@@ -291,7 +360,7 @@ if(isset($_POST['color']) && isset($_POST['cost']) && isset($_POST['productID'])
         		</div>
         	</div>
         </div>';
-      }
+  */    
    ?>
 </body>
 </html>

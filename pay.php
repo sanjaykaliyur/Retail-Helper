@@ -20,7 +20,7 @@ include 'header.php'
   <br>
   <br>
   <br>
-  <h2 style = "text-align: center;"> Total: $<?php echo $_POST['totalPrice'];?>.00</h2>
+  <h2 style = "text-align: center;"> Total: $<?php echo $_POST['totalcost'];?></h2>
 <div class="card-wrapper"></div>
   <br>
   <br>

@@ -1,4 +1,4 @@
-<?php include 'header.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <br>
@@ -13,18 +13,44 @@
             </div>
         </div>
         <!-- /.row -->
-        <h3> Bought: </h3>
+        <h3> Recent Purchases: </h3>
         <?php
-        $sql = "SELECT courses_cart, items_cart FROM users WHERE Username = '$id';";
-        $result = mysqli_query($conn,$sql);
-        $row = mysqli_fetch_assoc($result);
-        $items_cart = $row['items_cart'];
-        $courses_cart = $row['courses_cart'];
-        $array = str_split($row['courses_cart']);
-        $array2 = str_split($row['items_cart']);
-        $i = 0;
-        $bool = $bool2 = false;
-
+	include 'header.php';
+        include 'connect.php';
+        $result = oci_parse($conn,"SELECT * FROM cartTemp WHERE Userid = '$id'");
+        oci_execute($result);
+	while($row = oci_fetch_array($result, OCI_BOTH))
+        {
+	   // deduce if this product id already exists for this user
+	   // else add a new row
+	   // update the qty in product
+	  
+           $result2 = oci_parse($conn, "select case when exists (SELECT * FROM userPurchases where userid = '$id' AND PRODUCTID = '".$row['PRODUCTID']."') then 'Y' else 'N' end as R from dual");
+           oci_execute($result2);
+	   $row2 = oci_fetch_array($result2, OCI_BOTH);
+	       
+	       if($row2[0] == 'Y'){
+	           $result3 = oci_parse($conn, "UPDATE userPurchases SET qty = qty + 1, dateordered = (CURRENT_TIMESTAMP) where userid = '$id' AND PRODUCTID = '".$row['PRODUCTID']."'");
+	           oci_execute($result3);
+		   echo "You bought another ".$row['COLOR']." shirt";
+                   echo "<br>";
+ 	       
+	       }
+	  
+	   else
+	   {
+               $result4 = oci_parse($conn, "INSERT INTO userPurchases VALUES('$id','".$row['PRODUCTID']."',1,(CURRENT_TIMESTAMP))");
+	       //echo "INSERT INTO userPurchases VALUES('$id','".$row['PRODUCTID']."',1,(CURRENT_TIMESTAMP))";
+	       oci_execute($result4);
+               echo "You bought just bought your first ".$row['COLOR']." shirt";
+	       echo "<br>";
+           }
+	   $result5 = oci_parse($conn, "UPDATE PRODUCTS SET qtyAvailable = qtyAvailable - 1 where PRODUCTID = '".$row['PRODUCTID']."'");
+	   oci_execute($result5);
+        }
+	$result6 = oci_parse($conn, "DELETE FROM CARTTEMP WHERE USERID = '$id'");
+        oci_execute($result6);
+/*
         if(!($array[0] == "")) {
           $bool = true;
           foreach($array as $i => $item) {
@@ -81,9 +107,8 @@
         $sql7 = "UPDATE users SET courses_cart = '', items_cart = '' WHERE Username = '$id';";
         $result7 = mysqli_query($conn,$sql7);
         if(!$bool && !$bool2)
-        {
-          echo '<h4>You were charged $0</h4>';
-        }
+        {*/
+        //}
         ?>
         <!-- Content Row -->
         <div class="row">

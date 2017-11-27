@@ -24,13 +24,15 @@
             <h1 >Store
                 <small>Purchase T-Shirts</small>
             </h1>
-            <p>*Note: Each shirt is made of a different material sourced from different parts of the world. Our prices reflect the supply and availability of the material we use.</p>
+	    <br>
+            <h4 class="warning" style="color: green">*Note: Each shirt is made of a different material sourced from different parts of the world. Our prices reflect the supply and availability of the material we use.</h4>
          </div>
      </div>
      <?php
        if(!(isset($_SESSION['id']))) {
            echo '<h4 class="warning">*must be logged in to add to cart</h4>';
        }
+       echo '<h4 class="warning" style="color: red">*users can only buy one of each shirt color at one time</h4><br>';
        $result = oci_parse($conn, 'SELECT * FROM Products');
        oci_execute($result);
        while(($row = oci_fetch_array($result, OCI_BOTH))){  
@@ -45,26 +47,18 @@
                   <h3>'.$row['COLOR'].' Shirt</h3>
                   <p>'.$row['DESCRIPTION'].'</p>
                   <p>Price: $'.$row['PRICE'].'</p>
-		  <p>Quantity Available: '.$row['QUANTITYAVAILABLE'].'</p> 
-                  <div id="size">
-                      <select name = "size" id="select_location" required data-validation-required-message="select a size">
-                          <option selected="selected" value="Small">Small</option>
-                          <option value="Medium">Medium</option>
-                          <option value="Large">Large</option>
-                          <option value="XLarge">X-Large</option>
-                      </select>
-                  </div>
+		  <p>Qty Left: '.$row['QTYAVAILABLE'].'</p>
 		  <form method="post" action="added_to_cart.php">
                        <input type="hidden" name="color" value="'.$row['COLOR'].'"></input>
                        <input type="hidden" name="cost" value="'.$row['PRICE'].'"></input>
                        <input type="hidden" name="productID" value="'.$row['PRODUCTID'].'"></input>
-                       <input type="hidden" name="quantityAvailable" value="'.$row['QUANTITYAVAILABLE'].'"></input>
                        <button class="btn btn-primary" type="submit">Add to Cart<i class="fa fa-angle-right"></i></button>
                   </form>
               </div>
           </div>
 	<hr>';
 	}
+	// select case when exists (SELECT * FROM userPurchases where userid = 'Neil' AND PRODUCTID = 'a') then 'Y' else 'N' end as RA from dual;
      ?>
 
  <!-- jQuery -->
