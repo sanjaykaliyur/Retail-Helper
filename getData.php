@@ -1,11 +1,11 @@
 <?php
 include 'connect.php';
 
-$sql = "SELECT color,quantityAvailable from Products";
-$result = mysqli_query($conn,$sql);
+$result = oci_parse($conn,"SELECT color,quantityAvailable from Products");
+oci_execute($result);
 $labels = array();
 $data = "";
-while($row = mysqli_fetch_assoc($result))
+while($row = oci_fetch_array($result, OCI_BOTH)) != false)
 {
   array_push($labels, $row['color']);
   $data = $data.$row['quantityAvailable'].',';
