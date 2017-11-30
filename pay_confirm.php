@@ -32,7 +32,7 @@
 	       if($row2[0] == 'Y'){
 	           $result3 = oci_parse($conn, "UPDATE userPurchases SET qty = qty + 1, dateordered = (CURRENT_TIMESTAMP) where userid = '$id' AND PRODUCTID = '".$row['PRODUCTID']."'");
 	           oci_execute($result3);
-		   echo "You bought another ".$row['COLOR']." shirt";
+		   echo "<center><p>You just bought another ".$row['COLOR']." shirt</p></center>";
                    echo "<br>";
  	       
 	       }
@@ -42,7 +42,7 @@
                $result4 = oci_parse($conn, "INSERT INTO userPurchases VALUES('$id','".$row['PRODUCTID']."',1,(CURRENT_TIMESTAMP))");
 	       //echo "INSERT INTO userPurchases VALUES('$id','".$row['PRODUCTID']."',1,(CURRENT_TIMESTAMP))";
 	       oci_execute($result4);
-               echo "You bought just bought your first ".$row['COLOR']." shirt";
+               echo "<center><p>You just bought your first ".$row['COLOR']." shirt</p></center>";
 	       echo "<br>";
            }
 	   $result5 = oci_parse($conn, "UPDATE PRODUCTS SET qtyAvailable = qtyAvailable - 1 where PRODUCTID = '".$row['PRODUCTID']."'");
@@ -50,65 +50,6 @@
         }
 	$result6 = oci_parse($conn, "DELETE FROM CARTTEMP WHERE USERID = '$id'");
         oci_execute($result6);
-/*
-        if(!($array[0] == "")) {
-          $bool = true;
-          foreach($array as $i => $item) {
-            $sql2 = "SELECT courseName, courseDuration, courseCost, courseDate, childName, location FROM courseTemp WHERE courseID = '$array[$i]' AND user = '$id';";
-            $result2 = mysqli_query($conn,$sql2);
-            while($row2 = mysqli_fetch_assoc($result2)){
-              $rows2[] = $row2;
-            }
-            foreach($rows2 as $row2) {
-              $course_name = $row2['courseName'];
-              $course_cost = $row2['courseCost'];
-              $course_dur = $row2['courseDuration'];
-              $course_date = $row2['courseDate'];
-              $childName = $row2['childName'];
-              $location = $row2['location'];
-
-              $sql4 = "INSERT INTO USER_CAMPS (Username, Camp, Price, duration, date, childName, location) VALUES ('$id','$course_name','$course_cost','$course_dur','$course_date','$childName','$location');";
-              echo '<hr><p>'.$course_name.' <b> for '.$childName.'</b></p><hr>';
-              if($result4 = mysqli_query($conn,$sql4)) {
-                $sql5 = "SELECT spots FROM COURSES WHERE course_ID = '$array[$i]';";
-                $result5 = mysqli_query($conn,$sql5);
-                $row5 = mysqli_fetch_assoc($result5);
-                $spots = $row5['spots'] - 1;
-                $sql6 = "UPDATE COURSES SET spots = '$spots' WHERE course_ID = '$array[$i]';";
-                $result6 = mysqli_query($conn,$sql6);
-              }
-              else {
-                echo '<script> alert("Fail to register. Child & Camp already paid.")</script>';
-                echo "<script> location.href='register2.php';</script>";
-              }
-              $sql7 = "DELETE FROM courseTemp WHERE user = '$id' AND courseID = '$array[$i]';";
-              $result7 = mysqli_query($conn,$sql7);
-            }
-            $i++;
-            $rows2 = array();
-          }
-        }
-
-        $i = 0;
-        if(!($array2[0] == "")) {
-          $bool2 = true;
-          while($i < sizeof($array2)) {
-            $sql3 = "SELECT item_name, item_cost FROM CATALOG WHERE item_ID = '$array2[$i]';";
-            $result3 = mysqli_query($conn,$sql3);
-            $row3 = mysqli_fetch_assoc($result3);
-            $item_name = $row3['item_name'];
-            $item_cost = $row3['item_cost'];
-            $sql4 = "INSERT INTO USER_ITEMS (Username, item, Price) VALUES ('$id','$item_name','$item_cost');";
-            $result4 = mysqli_query($conn,$sql4);
-            echo '<hr><p>'.$row3['item_name'].'</p><hr>';
-            $i++;
-          }
-        }
-        $sql7 = "UPDATE users SET courses_cart = '', items_cart = '' WHERE Username = '$id';";
-        $result7 = mysqli_query($conn,$sql7);
-        if(!$bool && !$bool2)
-        {*/
-        //}
         ?>
         <!-- Content Row -->
         <div class="row">

@@ -21,7 +21,7 @@
                     </div>
                     <div class="panel-body">
 											<h4>Black Shirt</h4>
-                        <p>Wow! This black shirt is amazing. It's the best black shirt I've ever owned. I recommend everyone purchase this shirt.</p>
+                        <p>Wow! This black shirt is amazing. It's the best black shirt I've ever owned.</p>
                     </div>
                 </div>
             </div>
@@ -54,14 +54,14 @@
                     </div>
                     <div class="panel-body">
 											<h4>Green Shirt</h4>
-                        <p>Wow, wow, wow!! My green shirt is great. It is so good that I bought one for all of my neighbors.</po
+                        <p>Wow, wow, wow!! My green shirt is great. It is so good that I bought one for all of my neighbors.</p>
 			</div>
                 </div>
             </div>
               <?php
 	        $result = oci_parse($conn, "SELECT * FROM REVIEWS");
 		oci_execute($result);
-	        while(($row = oci_fetch_array($result, OCI_BOTH)) != false){
+	        while($row = oci_fetch_array($result, OCI_BOTH)){
 		    	if ($row['PRODUCTID'] == 'a'){
         		  $product = 'Black Shirt';
     			}
@@ -101,7 +101,6 @@
 </div>
 <?php
 if(isset($_SESSION['id'])) {
-	echo '<hr><br><br>';
 	echo '<h3> Leave a Review </h3>
   <form method="post" id="forum" style="margin:15px" action = "reviews_add.php">
             T-Shirt Color: <br>

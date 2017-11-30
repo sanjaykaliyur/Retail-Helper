@@ -11,16 +11,16 @@
   echo '<div id="accountWrapper" style="padding-left: 10px;">';
   $result2 = oci_parse($conn, "SELECT * FROM users WHERE UserId = '$id'");
   oci_execute($result2);
-  $result3 = oci_parse($conn, "SELECT Products.COLOR,UserPurchases.qty,UserPurchases.dateOrdered FROM userpurchases NATURAL JOIN Products WHERE UserId = '$id'");
+  $result3 = oci_parse($conn, "SELECT Products.COLOR,UserPurchases.QTY,UserPurchases.DATEORDERED FROM userpurchases NATURAL JOIN Products WHERE UserId = '$id'");
   oci_execute($result3);
   $result4 = oci_parse($conn, "SELECT * FROM Manufacturer NATURAL JOIN PRODUCTS");
   oci_execute($result4);
-  $result5 = oci_parse($conn, "SELECT * FROM Suppliers NATURAL JOIN PRODUCTS");
+  $result5 = oci_parse($conn, "SELECT * FROM Supplier NATURAL JOIN PRODUCTS");
   oci_execute($result5);
   
   echo '<h3>My Account:</h3>';
 
-  if($id!='admin')
+  if($id != 'admin')
   {
   	if(($row1 = oci_fetch_array($result2, OCI_BOTH)) != false)
   	{
@@ -37,8 +37,8 @@
   	while($row2 = oci_fetch_array($result3, OCI_BOTH))
   	{
   	  echo '<p><b>Color of T-Shirt:</b> '.$row2['COLOR'].'</p>';
-      echo '<p><b>Quantity:</b> '.$row2['qty'].'</p>';
-      echo '<p><b>Date Ordered:</b> '.$row2['dateOrdered'].'</p>';
+      echo '<p><b>Quantity:</b> '.$row2['QTY'].'</p>';
+      echo '<p><b>Date Ordered:</b> '.$row2['DATEORDERED'].'</p><hr>';
   	}
   }
 
@@ -59,9 +59,6 @@
       echo '<p><b>Location:</b> '.$row4['LOCATION'].'</p>';
     }
   }
-
-?>
-<?php
-include 'visualization2.php';
-include 'footer.php';
+  include 'visualization.php';
+  include 'footer.php';
 ?>
