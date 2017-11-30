@@ -2,8 +2,6 @@
   include 'header.php';
   include 'connect.php';
   echo '<br><br><br><br><br><br><br><br><br><br>';
-   //echo $_POST['productid'];
-   //echo "DELETE FROM cartTemp where USERID = '.$id.' and PRODUCTID = '".$_POST['productid']."'";
   if(isset($_POST['productid']))
   {
     $productid = $_POST['productid'];

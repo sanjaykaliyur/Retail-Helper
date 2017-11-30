@@ -58,7 +58,6 @@
           </div>
 	<hr>';
 	}
-	// select case when exists (SELECT * FROM userPurchases where userid = 'Neil' AND PRODUCTID = 'a') then 'Y' else 'N' end as RA from dual;
      ?>
 
  <!-- jQuery -->

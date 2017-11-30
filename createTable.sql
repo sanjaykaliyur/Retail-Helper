@@ -1,3 +1,5 @@
+drop table cartTemp;
+
 drop table Reviews;
 
 drop table Supplier;
